@@ -1,0 +1,8 @@
+{% extends 'index.html' %}
+{% block head %}
+    {{ super() }}
+    <title>{% block title %} About {% endblock title %}</title>
+{% endblock head %}
+{% block content %}
+    <p>about page</p>
+{% endblock content %}
