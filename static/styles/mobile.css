@@ -1,0 +1,7 @@
+@media screeen and (max-width: 600px)
+{
+    .nav-container a
+    {
+        display: block !important;
+    }
+}
