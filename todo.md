@@ -1,22 +1,19 @@
 # frontend
-    - create templates
+    - templates
         - base
+            + decide content for main page
+            + styling
         - blog
+            + design the blog system, CRUD needed
         - projects
+            + design layout for github repos
         - about
-    - design landingpage
-        - nav location, top middle?
-        - styling
+            + design page and decide content
     - pages
-        - about
-        - projects
-        - blog
-        - recipes
         - pictures
         - todo list
 
 # backend
-    - routing for pages
     - database setup, sql or nosql?
 
 # misc
