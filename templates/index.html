@@ -12,6 +12,7 @@
         <title>{% block title %} Home {% endblock title%}</title>
         <meta name="description" content="">
         <link rel="stylesheet" href={{ url_for('static', filename='styles/main.css') }}>
+        <link rel="stylesheet" href={{ url_for('static', filename='styles/mobile.css') }}>
         {% endblock head %}
     </head>
     <body>
@@ -22,12 +23,12 @@
         <section id="base_header">
             <div>
                 {% include 'nav.html' %}
-                <h1>Coming soon...</h1>
             </div>
         </section>
         <section id="content">
             <div class="content">
                 {% block content %}
+                    <h1>Coming soon...</h1>
                 {% endblock content %}
             </div>
         </section>
