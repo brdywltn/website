@@ -7,6 +7,7 @@
             + design the blog system, CRUD needed
         - projects
             + design layout for github repos
+            + ~~implement backend github api calls for dynamic repo data~~
         - about
             + design page and decide content
     - pages
