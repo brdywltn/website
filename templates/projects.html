@@ -4,8 +4,28 @@
     <title>{% block title %} Projects {% endblock title %}</title>
 {% endblock head %}
 {% block content %}
-    <p>project page || a collection of things i've created or have taken part in. </p>
-    <p>name: {{ project_name }}</p>
-    <p>description: {{ project_desc }}</p>
-    <p>url: {{ project_url }}</p>
+    <div class="row">
+        <div class="col-12">
+            <p>project page || a collection of things i've created or have taken part in.</p>
+        </div>
+    </div>
+
+    {% for project in project_data %}
+    
+    <div class="row">
+        <div class="col-12">
+            <p>name: {{ project.name }}</p>
+        </div>
+        <div class="col-12">
+            <p>description: {{ project.description }}</p>
+        </div>
+        <div class="col-12">
+            <p>url: {{ project.url }}</p>
+        </div>
+    </div>
+
+    {% endfor %}
+    
+    
+    
 {% endblock content %}

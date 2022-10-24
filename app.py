@@ -16,9 +16,7 @@ def about():
 @app.route('/projects')
 def projects():
     return render_template('projects.html',
-                                project_name=project_name,
-                                project_url=project_url,
-                                project_desc=project_desc) 
+                                project_data=json_data) 
 
 @app.route('/blog')
 def blog():
@@ -44,7 +42,8 @@ json_data = r.json()
 project_name = json_data[0]['name']
 project_desc = json_data[0]['description']
 project_url = json_data[0]['svn_url']
-print(json_data[0]['name'])
+# #project_img = json_data[0]['']
+# print(json_data[0]['name'])
 
 # ssh into the vps
 # sudo apt-get update
@@ -86,3 +85,6 @@ print(json_data[0]['name'])
 ## sudo pkill -f gunicorn3
 
 ## all taken from https://www.youtube.com/watch?v=BpcK5jON6Cg
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', debug=True)
