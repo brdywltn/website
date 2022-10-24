@@ -22,6 +22,21 @@ def projects():
 def blog():
     return render_template('blog.html')
 
+@app.route('/signup')
+def signup():
+    return 'signup'
+
+#login page
+@app.route('/login')
+def login():
+    return 'login'
+
+#profile page
+@app.route('/profile')
+def profile():
+    return 'profile'
+
+
 #may be worth creating a .creds file for storing and including in files but 
 #add the .creds file to .gitignore - check this out
 token = os.getenv('GITHUB_TOKEN')
@@ -55,7 +70,7 @@ project_url = json_data[0]['svn_url']
 #       location / {
 #            proxy_pass http://127.0.0.1:8000
 #            proxy_set_header Host $host
-#            proxy_set_header X_Forwardeed-For $proxy_add_x_forwarded_for        
+#            proxy_set_header X_Forwarded-For $proxy_add_x_forwarded_for        
 #       }
 #  ctrl x -> ctrl y
 #
@@ -85,6 +100,7 @@ project_url = json_data[0]['svn_url']
 ## sudo pkill -f gunicorn3
 
 ## all taken from https://www.youtube.com/watch?v=BpcK5jON6Cg
+#https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-gunicorn-and-nginx-on-ubuntu-18-04 also
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)

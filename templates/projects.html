@@ -5,22 +5,26 @@
 {% endblock head %}
 {% block content %}
     <div class="row">
-        <div class="col-12">
-            <p>project page || a collection of things i've created or have taken part in.</p>
+        <div class="header">
+            <div class="col-12">
+                <p>project page || a collection of things i've created or have taken part in.</p>
+            </div>
         </div>
     </div>
 
     {% for project in project_data %}
     
-    <div class="row">
-        <div class="col-12">
-            <p>name: {{ project.name }}</p>
-        </div>
-        <div class="col-12">
-            <p>description: {{ project.description }}</p>
-        </div>
-        <div class="col-12">
-            <p>url: {{ project.url }}</p>
+    <div class="project_container">
+        <div class="row">
+            <div class="col-12">
+                <p>name: {{ project.name }}</p>
+            </div>
+            <div class="col-12">
+                <p>description: {{ project.description }}</p>
+            </div>
+            <div class="col-12">
+                <p>url: {{ project.url }}</p>
+            </div>
         </div>
     </div>
 

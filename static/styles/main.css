@@ -21,6 +21,7 @@ body
 .nav-container a:visited {
   color: #9a8c98;
 }
+
 .nav-container a
 {
   display:inline-block;
@@ -31,4 +32,15 @@ body
 {
   background-color: #4a4e69;
   padding:10px;
+}
+
+.header
+{
+  margin:20px 20px 40px 20px;
+}
+
+/* Project page */
+.project_container
+{
+  margin: 40px 20px;
 }
