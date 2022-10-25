@@ -13,6 +13,7 @@
         <meta name="description" content="">
         <link rel="stylesheet" href={{ url_for('static', filename='styles/main.css') }}>
         <link rel="stylesheet" href={{ url_for('static', filename='styles/mobile.css') }}>
+        <link rel="stylesheet" href={{ url_for('static', filename='styles/layout.css') }}>
         {% endblock head %}
     </head>
     <body>
@@ -27,9 +28,9 @@
         </section>
         <section id="content">
             <div class="content">
-                {% block content %}
-                    <h1>Coming soon...</h1>
-                {% endblock content %}
+            {% block content %}
+                <h1>Coming soon...</h1>
+            {% endblock content %}
             </div>
         </section>
         <script src="" async defer></script>

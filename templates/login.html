@@ -1,0 +1,28 @@
+{% extends 'index.html' %}
+{% block head %}
+    {{ super() }}
+    <title>{% block title %} Login {% endblock title %}</title>
+{% endblock head %}
+{% block content %}
+<div class="login-container">
+    <form method="POST" action="/login">
+       <div class="row">
+            <div class="col-12">
+                <h1>Login</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input col-12">
+                <input type="text" name="username" placeholder="Username" autofocus="">
+            </div>
+            <div class="input password col-12">
+                <input type="password" name="password" placeholder="Password" autofocus="">
+            </div>
+            <div class="input submit col-12">
+                <input type="button" onclick="" value="Submit">
+            </div>
+        </div> 
+    </form>
+</div>
+    
+{% endblock content %}
