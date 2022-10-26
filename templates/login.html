@@ -4,6 +4,13 @@
     <title>{% block title %} Login {% endblock title %}</title>
 {% endblock head %}
 {% block content %}
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<div class="notification">
+    {{messages[0]}}
+</div>
+{% endif %}
+{% endwith %}
 <div class="login-container">
     <form method="POST" action="/login">
        <div class="row">
@@ -19,7 +26,7 @@
                 <input type="password" name="password" placeholder="Password" autofocus="">
             </div>
             <div class="input submit col-12">
-                <input type="button" onclick="" value="Submit">
+                <button>Sign Up</button>
             </div>
         </div> 
     </form>
