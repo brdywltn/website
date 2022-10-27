@@ -83,7 +83,7 @@ def blog():
 #blog post page
 @app.route('/blog/<slug>')
 def blogpost(slug):
-    post = Posts.query.filter_by(slug=Posts.slug).first()
+    post = Posts.query.filter_by(slug=slug).first()
     return render_template('blog_post.html', post_title=post.post_title, post_content=post.post_content, slug=post.slug)
 
 @app.route('/login')
