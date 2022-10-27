@@ -1,0 +1,35 @@
+{% extends 'index.html' %}
+{% block head %}
+    {{ super() }}
+    <title>{% block title %} Signup {% endblock title %}</title>
+{% endblock head %}
+{% block content %}
+<div class="login-container">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="notification">
+            {{messages[0]}}. <br> Go to <a href="{{ url_for('login') }}">login page</a>
+        </div>
+    {% endif %}
+    {% endwith %}
+    <form method="POST" action="/signup">
+       <div class="row">
+            <div class="col-12">
+                <h1>Sign Up</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input col-12">
+                <input type="text" name="username" placeholder="Username" autofocus="">
+            </div>
+            <div class="input password col-12">
+                <input type="password" name="password" placeholder="Password" autofocus="">
+            </div>
+            <div class="input submit col-12">
+                <button>Sign Up</button>
+            </div>
+        </div> 
+    </form>
+    
+</div>
+{% endblock content %}
