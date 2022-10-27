@@ -40,6 +40,15 @@ body
   border-radius: 2.5px;
 }
 
+.new_post_container {
+  width:600px;
+  background-color: #c9ada7;
+  margin: 0 auto;
+  text-align: center;
+  border-radius: 2.5px;
+  margin-top:25%;
+}
+
 .submit
 {
   margin-bottom:20px;

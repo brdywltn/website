@@ -4,5 +4,25 @@
     <title>{% block title %} New Post {% endblock title %}</title>
 {% endblock head %}
 {% block content %}
-    <p>Create a new post page</p>
+    <div class="new_post_container">
+        <form method="POST" action="/new_post">
+            <div class="row">
+                <div class="col-12">
+                    <label for="post_title">Post title:</label>
+                    <input type="text" name="post_title" placeholder="Enter a title">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <label for="post_content">Post content:</label>
+                    <input type="text" name="post_content" placeholder="Enter some text for a post">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <button>Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
 {% endblock content %}

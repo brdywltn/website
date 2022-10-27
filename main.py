@@ -3,6 +3,7 @@ from flask import Flask, render_template, redirect, url_for, request, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, LoginManager, login_user, login_required, current_user, logout_user
+from datetime import datetime
 
 #init SQLAlchemy so we can use it later in our models
 db = SQLAlchemy()
@@ -30,6 +31,18 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(1000), unique=True)
     password = db.Column(db.String(1000))
 
+# class TimestampMixin(object):
+#     created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+#     updated = db.Column(db.DateTime, onupdate=datetime.utcnow)
+
+class Posts(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    post_title = db.Column(db.String(1000))
+    post_content = db.Column(db.String(1000))
+
+
+    
+
 with app.app_context():
     print('creating all...')
     db.create_all()
@@ -51,7 +64,9 @@ def projects():
 
 @app.route('/blog')
 def blog():
-    return render_template('blog.html')
+    posts = Posts.query.all()
+    return render_template('blog.html',
+                                posts=posts)
 
 @app.route('/login')
 def login():
@@ -116,9 +131,25 @@ def profile():
     return render_template('profile.html', username=current_user.username)
 
 #newpost
-@app.route('/newpost')
+@app.route('/new_post')
+@login_required
 def new_post():
     return render_template('new_post.html')
+
+@app.route('/new_post', methods=['POST'])
+@login_required
+def new_post_post():
+    #title
+    post_title = request.form.get('post_title')
+    #content
+    post_content = request.form.get('post_content')
+    #create new post with the form data
+    new_post = Posts(post_title=post_title, post_content=post_content)
+    #add the post to the db
+    db.session.add(new_post)
+    db.session.commit()
+
+    return redirect(url_for('blog'))
 
 #can split this out into a separate file - possibly with an abstracted
 #get function that just passes a different query_url?
