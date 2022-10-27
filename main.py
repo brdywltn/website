@@ -1,3 +1,4 @@
+
 import requests, os, json
 from flask import Flask, render_template, redirect, url_for, request, flash
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -35,13 +36,24 @@ class User(UserMixin, db.Model):
 #     created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 #     updated = db.Column(db.DateTime, onupdate=datetime.utcnow)
 
+
+        
 class Posts(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     post_title = db.Column(db.String(1000))
     post_content = db.Column(db.String(1000))
+    slug = db.Column(db.String(1000), unique=True)
 
 
-    
+
+#create a slug from a database column value
+def slugify(title):
+    #lowercase all
+    string_lower = title.lower()
+    #replace spaces with -
+    slug = string_lower.replace(" ", "-")
+    #return slug
+    return slug    
 
 with app.app_context():
     print('creating all...')
@@ -68,6 +80,12 @@ def blog():
     return render_template('blog.html',
                                 posts=posts)
 
+#blog post page
+@app.route('/blog/<slug>')
+def blogpost(slug):
+    post = Posts.query.filter_by(slug=Posts.slug).first()
+    return render_template('blog_post.html', post_title=post.post_title, post_content=post.post_content, slug=post.slug)
+
 @app.route('/login')
 def login():
     return render_template('login.html')
@@ -86,7 +104,7 @@ def login_post():
         return redirect(url_for('login.html'))
     
     login_user(user, remember=remember)
-    return redirect(url_for('profile'))
+    return redirect(url_for('profile', username=user.username))
 
     
 
@@ -125,10 +143,18 @@ def logout():
     return redirect(url_for('index'))
 
 #profile
-@app.route('/profile')
+#add the slug to the route
+@app.route('/profile/<username>')
 @login_required
-def profile():
-    return render_template('profile.html', username=current_user.username)
+def profile(username):
+    profile = User.query.filter_by(username=username).first()
+
+    if profile is None:
+        return redirect(url_for('signup'))
+
+    return render_template('profile.html', username=username)
+
+
 
 #newpost
 @app.route('/new_post')
@@ -143,8 +169,10 @@ def new_post_post():
     post_title = request.form.get('post_title')
     #content
     post_content = request.form.get('post_content')
+    #create a slug
+    post_slug = slugify(post_title)
     #create new post with the form data
-    new_post = Posts(post_title=post_title, post_content=post_content)
+    new_post = Posts(post_title=post_title, post_content=post_content, slug=post_slug)
     #add the post to the db
     db.session.add(new_post)
     db.session.commit()

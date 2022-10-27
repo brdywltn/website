@@ -8,5 +8,6 @@
     {% for post in posts %}
         <p>{{post.post_title}}</p>
         <p>{{post.post_content}}</p>
+        <a href="{{url_for('blogpost', slug=post.slug)}}">link</a>
     {% endfor %}
 {% endblock content %}
